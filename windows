@@ -1,0 +1,39 @@
+Initial Enumeration for Privilage escalation based on Heath adams:
+  Windows 
+    1.System enumeration - commands to get more information about the system
+      a) systeminfo - display alot of information of system such as os , os version , host name , BIOS version and so on.
+      b) wmic qfe - this command is to query and review the patches,updates and hotfixes installed in a windows OS. if ur wondering what is wmic qfe stands for it is windows management instrumentation commandline quick fix engineering
+      c) wmic qfe list full - this is same as above except it outputs in list format
+      d) wmic logicaldisk get DeviceID,Caption,Description - this command is to get information about the logical disks that are available in a system. the get parameter is just there to make the output less messy
+
+   2.User enumeration -
+      a) whoami - a basic command to identify the user who initiates this command
+      b) whoami /priv - check privilage of current user 
+      c) whoami /groups - check which groups the current user is involved in
+      d) net user - shows users in the machine
+      d) net localgroups - display information of local groups , sometimes it wont work
+      d) net localgroups <known group names> - this is a bit more reliable with a known user groups , it can be tied together with the command whoami /groups
+
+   3.Network -
+      a) ipconfig /all - see ip address and other infor mation of network. usually ipconfig will give this information but adding  /all give a bit more information to work with
+      b) arp -a - gives information of arp table 
+      c) route print - this gives information of communication that is running 
+      d) netstat -ano - this gives information of ports that are communicationg with other nodes  ,  for example you may find ports that are running but didnt show up in nmap scans
+
+   4.Anti-virus enumeration -
+      a) sc query windefend - this command is to check for information of windefend as windows have windows defender. It shows the status of windows defender.
+      b) sc queryex type=service - this command shows all the service that is running on the machine
+      c) netsh firewall show state -display information of the firewall (NOTE : a bit of a older command)
+      d) netsh firewall show config - displays the configuration information of the firewall
+
+   5.Password hunting -
+      a) findstr ./si password *.* - its just a simple command to check if there are passwords stored in the pc. It looks for the phrase password and the *.* definds the file extention feel free to change it to *.txt or something else.
+         NOTE this command only scans for the phrase password in the current working directory. 
+
+
+To people who are refering to this notes , these are basic privilage escalation commands i found  for windows .
+
+
+
+
+
